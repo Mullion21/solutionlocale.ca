@@ -25,7 +25,8 @@ class StorePlaces extends FormRequest
     {
         $data = $this->input();
         $isDeliveryTypeSet = isset($data['deliveryType']);
-
+        print_r(json_decode($this->input('addressjson'), true));
+        die();
         $this->merge([
             'addressjson' => json_decode($this->input('addressjson'), true),
             'deliveryType' => $isDeliveryTypeSet ? $this->input('deliveryType') : null,
@@ -72,7 +73,7 @@ class StorePlaces extends FormRequest
     {
         return [
             'name.required' => 'Vous devez entrer le nom de votre entreprise.',
-            'addressjson.name.required' => "Il semble avoir un problème avec l'adresse donnée. Si ce problème persiste, veuillez nous contacter via notre page Facebook",
+            'addressjson.name.required' => "Vous devez entrer une adresse complète.",
             'addressjson.city.required' => "Il semble avoir un problème avec l'adresse donnée, spécifiquement la ville. Si ce problème persiste, veuillez nous contacter via notre page Facebook",
             'categories.required'  => 'Vous devez choisir une catégorie.',
             'deliveryType.required'  => 'Vous devez choisir un mode de distribution.',
